@@ -93,19 +93,28 @@
             padding: 0 2rem;
         }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffd700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+.logo {
+    color: #ffd700; /* สีทองเด่น */
+    font-size: 2.5rem; /* ตัวหนังสือใหญ่เด่น */
+    font-weight: 900;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
 
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-        }
+.logo i {
+    font-size: 2.8rem; /* ไอคอนใหญ่กว่าตัวอักษรเล็กน้อย */
+    color: #ffb700;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
 
         .nav-menu {
             display: flex;
@@ -597,7 +606,8 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="nav-container">
-            <a href="#" class="logo">⚒️ เสาเข็มไทย</a>
+<a href="#" class="logo"><i class="fas fa-person-digging"></i>  จตุพรพิเศษ</a>
+
             <nav>
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#home">หน้าหลัก</a></li>
