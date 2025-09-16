@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>ติดต่อ - บริษัท จตุพรพิเศษ กรุ๊ป จำกัด</title>
+    <style>
+/* Reset และ Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+/* Background ปรับใหม่ ใช้ pic1.jpg */
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('pic1.jpg') center/cover no-repeat;
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.3; }
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.header.scrolled {
+    padding: 0.3rem 0;
+    background: rgba(30, 60, 114, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+}
+
+/* Logo Styles */
+.logo {
+    color: #ffd700;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo i {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: #ffb700;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffd700;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.nav-item a:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+    color: #ffd700;
+}
+
+.nav-item a.active {
+    background: rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0; height: 2px;
+    background: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-item a:hover::after {
+    width: 80%;
+}
+
+/* Phone Button */
+.phone-btn {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Page Header */
+.page-header {
+    position: relative;
+    min-height: 50vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('pic1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 120px 1rem 2rem;
+}
+
+.page-header-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+}
+
+.page-header-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+/* Section Styles */
+.section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #1e3c72;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(60px, 12vw, 100px);
+    height: 4px;
+    background: linear-gradient(45deg, #ffd700, #1e3c72);
+    border-radius: 2px;
+}
+
+/* Contact Main Section */
+.contact-main {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+/* Contact Form */
+.contact-form {
+    background: white;
+    padding: clamp(2rem, 4vw, 3rem);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.contact-form:hover {
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.15);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+.contact-form h3 {
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1e3c72;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: clamp(0.8rem, 2vw, 1rem);
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: white;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    padding: clamp(0.8rem, 2vw, 1rem) 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.submit-btn:hover::before {
+    left: 0;
+}
+
+.submit-btn span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+
+.submit-btn:hover span {
+    color: #1e3c72;
+}
+
+/* Contact Info */
+.contact-info {
+    padding: 1rem 0;
+}
+
+.contact-info h3 {
+    color: #1e3c72;
+    margin-bottom: 2rem;
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 600;
+    text-align: center;
+}
+
+.info-cards {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(30, 60, 114, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid transparent;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.15);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover .info-icon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    transform: scale(1.1);
+}
+
+.info-content h4 {
+    color: #1e3c72;
+    margin-bottom: 0.3rem;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-weight: 600;
+}
+
+.info-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+.info-content a {
+    color: #1e3c72;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-content a:hover {
+    color: #ffd700;
+}
+
+/* Map Section */
+.map-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.map-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.map-frame {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Office Hours */
+.office-hours {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.hours-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+}
+
+.hours-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.hours-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: #ffd700;
+    transition: all 0.4s ease;
+}
+
+.hours-card:hover .hours-icon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    transform: scale(1.1);
+}
+
+.hours-card h4 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-weight: 600;
+}
+
+.hours-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.highlight {
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Kanit', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    color: #ffd700;
+}
+
+.faq-question i {
+    color: #ffd700;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.active {
+    max-height: 200px;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.faq-answer p {
+    color: #b8c5d6;
+    line-height: 1.7;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+/* Footer */
+.footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+}
+
+.footer p { 
+    opacity: 0.9; 
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Menu Styles for screens <= 1023px */
+@media (max-width: 1023px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #1e3c72;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-item a {
+        padding: 1rem 2rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        display: block;
+        text-align: center;
+        border-radius: 15px;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        min-width: 200px;
+    }
+
+    .nav-item a:hover {
+        background: #ffd700;
+        color: #1e3c72;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1023px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        order: 1;
+    }
+
+    .contact-info {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        min-height: 40vh;
+        padding: 100px 1rem 2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .bg-animated {
+        background-attachment: scroll;
+    }
+
+    .map-frame {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+        height: 55px;
+    }
+
+    .page-header {
+        padding: 120px 0.5rem 2rem;
+    }
+
+    .phone-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .particle {
+        display: none;
+    }
+
+    .contact-form,
+    .map-container {
+        padding: 1.5rem;
+    }
+
+    .map-frame {
+        height: 250px;
+    }
+}
+
+/* Focus styles for accessibility */
+.nav-item a:focus,
+.phone-btn:focus,
+.submit-btn:focus,
+.faq-question:focus,
+.mobile-menu-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .mobile-menu-toggle,
+    .particle {
+        display: none;
+    }
+
+    .page-header {
+        background: #1e3c72 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 0.2s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.8s;"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-person-digging"></i> 
+                จตุพรพิเศษ
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="about.html">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="product.html">สินค้าของเรา</a></li>
+                    <li class="nav-item"><a href="contact.html" class="active">ติดต่อ</a></li>
+                </ul>
+            </nav>
+
+            <!-- ปุ่มโทรศัพท์ -->
+            <a href="tel:081-661-3863" class="phone-btn" aria-label="Call us">
+                <i class="fas fa-phone"></i> 
+                <span>081-661-3863</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>
+                <i class="fas fa-phone"></i>
+                ติดต่อเรา
+            </h1>
+            <p>พร้อมให้คำปรึกษาและบริการตลอด 24 ชั่วโมง</p>
+        </div>
+    </section>
+
+    <!-- Contact Main Section -->
+    <section class="section contact-main animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">ส่งข้อความถึงเรา</h2>
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form animate-on-scroll">
+                    <h3>
+                        <i class="fas fa-envelope"></i>
+                        แบบฟอร์มติดต่อ
+                    </h3>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">ชื่อ *</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="ชื่อ">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">นามสกุล *</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="นามสกุล">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">เบอร์โทรศัพท์ *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="08x-xxx-xxxx">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">อีเมล *</label>
+                                <input type="email" id="email" name="email" required placeholder="example@email.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">ชื่อบริษัท/องค์กร</label>
+                                <input type="text" id="company" name="company" placeholder="ชื่อบริษัท/องค์กร (ถ้ามี)">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">ประเภทบริการที่สนใจ</label>
+                                <select id="service" name="service">
+                                    <option value="">เลือกบริการที่สนใจ</option>
+                                    <option value="pile-driving-rail">ตอกเสาเข็มแบบราง</option>
+                                    <option value="pile-driving-crawler">ตอกเสาเข็มแบบตีนตะขาบ</option>
+                                    <option value="pile-driving-wheel">ตอกเสาเข็มแบบล้อยาง</option>
+                                    <option value="pile-driving-micro">ตอกเสาเข็มแบบไมโครไพล</option>
+                                    <option value="concrete-pile">เสาเข็มคอนกรีต</option>
+                                    <option value="precast-slab">แผ่นพื้นสำเร็จรูป</option>
+                                    <option value="concrete-pipe">ท่อคอนกรีต</option>
+                                    <option value="consultation">ปรึกษาโครงการ</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">หัวข้อ *</label>
+                            <input type="text" id="subject" name="subject" required placeholder="หัวข้อเรื่องที่ต้องการติดต่อ">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">รายละเอียดโครงการ/ข้อความ *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="กรุณาระบุรายละเอียดโครงการ หรือสิ่งที่ต้องการสอบถาม เช่น ขนาดพื้นที่ ประเภทงาน จำนวนเสาเข็ม งบประมาณโดยประมาณ เป็นต้น"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span>ส่งข้อความ</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info animate-on-scroll">
+                    <h3>
+                        <i class="fas fa-info-circle"></i>
+                        ข้อมูลติดต่อ
+                    </h3>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>ที่อยู่</h4>
+                                <p>เลขที่ 96 หมู่ 10<br>
+                                ตำบล ยางลูกเสือ<br>
+                                อำเภอ องครักษ์<br>
+                                จังหวัด นครนายก 26120</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>เบอร์โทรศัพท์</h4>
+                                <p><a href="tel:081-661-3863">081-661-3863</a><br>
+                                (สายตรง 24 ชั่วโมง)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>อีเมล</h4>
+                                <p><a href="mailto:Jatupon465kb@gmail.com">Jatupon465kb@gmail.com</a><br>
+                                ตอบกลับภายใน 2 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Line Official</h4>
+                                แชทได้ตลอด 24 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>พื้นที่ให้บริการ</h4>
+                                <p>ครอบคลุมทั่วประเทศไทย<br>
+                                เน้นภาคกลางและปริมณฑล</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section map-section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">แผนที่ตำแหน่ง</h2>
+            <div class="map-container">
+                <iframe 
+                    class="map-frame"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.8234567890!2d101.2789!3d14.2067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDEyJzI0LjEiTiAxMDHCsDE2JzQ0LjAiRQ!5e0!3m2!1sth!2sth!4v1234567890"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="แผนที่ตำแหน่งบริษัท จตุพรพิเศษ กรุ๊ป จำกัด">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Hours Section -->
+    <section class="section office-hours animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">เวลาทำการและบริการ</h2>
+            <div class="hours-grid">
+                <div class="hours-card animate-on-scroll">
+                    <div class="hours-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>เวลาทำการ</h4>
+                    <p><span class="highlight">จันทร์ - เสาร์</span><br>
+                    8.30-17.30 น.<br><br>
+                    <span class="highlight">วันอาทิตย์</span><br>
+                    8.30-17.30 น.</p>
+                </div>
+                
+                <div class="hours-card animate-on-scroll">
+                    <div class="hours-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4>บริการฉุกเฉิน</h4>
+                    <p><span class="highlight">24 ชั่วโมง</span><br>
+                    ทุกวัน<br><br>
+                    สำหรับงานเร่งด่วน<br>
+                    และซ่อมแซมฉุกเฉิน</p>
+                </div>
+                
+                <div class="hours-card animate-on-scroll">
+                    <div class="hours-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>ศูนย์บริการลูกค้า</h4>
+                    <p><span class="highlight">24 ชั่วโมง</span><br>
+                    ทุกวัน<br><br>
+                    รับคำปรึกษา<br>
+                    และแก้ไขปัญหา</p>
+                </div>
+                
+                <div class="hours-card animate-on-scroll">
+                    <div class="hours-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h4>นัดหมายล่วงหน้า</h4>
+                    <p><span class="highlight">แนะนำ</span><br>
+                    นัดหมายล่วงหน้า 1-2 วัน<br><br>
+                    เพื่อการบริการ<br>
+                    ที่มีประสิทธิภาพสูงสุด</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">คำถามที่พบบ่อย</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>บริษัทให้บริการในพื้นที่ไหนบ้าง?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>เราให้บริการครอบคลุมทั่วประเทศไทย โดยเน้นหนักในภาคกลางและปริมณฑล รวมถึงกรุงเทพฯ นนทบุรี ปทุมธานี สมุทรปราการ นครปฐม นครนายก ปราจีนบุรี และจังหวัดใกล้เคียง</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ระยะเวลาในการดำเนินงานใช้เวลานานเท่าไร?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ระยะเวลาขึ้นอยู่กับขนาดและความซับซ้อนของโครงการ โดยทั่วไปงานตอกเสาเข็มขนาดเล็กใช้เวลา 1-3 วัน ส่วนโครงการขนาดใหญ่อาจใช้เวลา 1-4 สัปดาห์ เราจะประเมินและแจ้งกำหนดการที่ชัดเจนก่อนเริ่มงาน</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>มีการรับประกันหรือไม่?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>เรามีการรับประกันคุณภาพงานและผลิตภัณฑ์ โดยสินค้าจะได้รับการรับประกันตามมาตรฐานโรงงาน ส่วนงานบริการจะมีการรับประกันและบริการหลังการขายเป็นระยะเวลา 1 ปี</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>สามารถขอใบเสนอราคาได้อย่างไร?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ท่านสามารถติดต่อขอใบเสนอราคาได้หลายช่องทาง: โทร 081-661-3863, ส่งอีเมล Jatupon465kb@gmail.com หรือกรอกแบบฟอร์มในหน้านี้ โดยระบุรายละเอียดโครงการให้ครบถ้วน เราจะจัดส่งใบเสนอราคาภายใน 24 ชั่วโมง</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>มีบริการออกแบบและให้คำปรึกษาหรือไม่?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ใช่ เรามีทีมวิศวกรและผู้เชี่ยวชาญพร้อมให้คำปรึกษาเกี่ยวกับการออกแบบโครงสร้าง การเลือกประเภทเสาเข็มที่เหมาะสม และการวางแผนโครงการ รวมถึงการประเมินต้นทุนและการประหยัดงบประมาณ</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>มีการตรวจสอบคุณภาพอย่างไร?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>เรามีระบบควบคุมคุณภาพที่เข้มงวดในทุกขั้นตอน ตั้งแต่การคัดเลือกวัตถุดิบ กระบวนการผลิต การทดสอบความแข็งแรง จนถึงการติดตั้ง พร้อมมีเอกสารรับรองคุณภาพและผลการทดสอบให้ลูกค้าทุกครั้ง</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 บริษัท จตุพรพิเศษ กรุ๊ป จำกัด สงวนลิขสิทธิ์ | ออกแบบและพัฒนาด้วยความใส่ใจ</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const body = document.body;
+
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            const icon = this.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                this.setAttribute('aria-expanded', 'true');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                this.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu when clicking on navigation links
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Enhanced Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Hide/show header on scroll (optional enhancement)
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    
+                    // Add stagger animation for cards
+                    if (entry.target.classList.contains('info-cards') || 
+                        entry.target.classList.contains('hours-grid') || 
+                        entry.target.classList.contains('faq-container')) {
+                        const cards = entry.target.querySelectorAll('.info-card, .hours-card, .faq-item');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animated');
+                            }, index * 150);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced particle creation (only on larger screens)
+        function createParticle() {
+            if (window.innerWidth > 768) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 6000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 4000);
+
+        // Enhanced form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('.submit-btn');
+            const buttonSpan = button.querySelector('span');
+            const originalText = buttonSpan.textContent;
+            
+            // Disable button and show loading state
+            button.disabled = true;
+            buttonSpan.textContent = 'กำลังส่ง...';
+            button.style.background = 'linear-gradient(45deg, #6c757d, #495057)';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                buttonSpan.textContent = 'ส่งสำเร็จ! ✓';
+                button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                
+                setTimeout(() => {
+                    buttonSpan.textContent = originalText;
+                    button.style.background = 'linear-gradient(45deg, #1e3c72, #2a5298)';
+                    button.disabled = false;
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // FAQ Toggle Function
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            
+            // Toggle active class
+            button.classList.toggle('active');
+            answer.classList.toggle('active');
+            
+            // Close other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-question').classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+        }
+
+        // Handle window resize for responsive adjustments
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Close mobile menu on desktop resize
+                if (window.innerWidth > 1023) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+                
+                // Remove particles on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.particle').forEach(particle => {
+                        if (particle.style.position === 'absolute') {
+                            particle.remove();
+                        }
+                    });
+                }
+            }, 250);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+            // Animate page header content on load
+            setTimeout(() => {
+                const pageHeaderContent = document.querySelector('.page-header-content');
+                if (pageHeaderContent) {
+                    pageHeaderContent.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            }, 500);
+        });
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // Close mobile menu with Escape key
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
+        });
+
+        // Add hover effects for better user experience
+        document.querySelectorAll('.info-card, .hours-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial classes for animations
+            document.body.classList.add('js-loaded');
+            
+            // Set initial ARIA attributes
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.setAttribute('aria-controls', 'nav-menu');
+            navMenu.setAttribute('aria-labelledby', 'mobile-menu-toggle');
+        });
+    </script>
+</body>
+</html>

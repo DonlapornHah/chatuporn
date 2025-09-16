@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>เกี่ยวกับเรา - บริษัท จตุพรพิเศษ กรุ๊ป จำกัด</title>
+    <style>
+/* Reset และ Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+/* Background ปรับใหม่ ใช้ pic1.jpg */
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('pic1.jpg') center/cover no-repeat;
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.3; }
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.header.scrolled {
+    padding: 0.3rem 0;
+    background: rgba(30, 60, 114, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+}
+
+/* Logo Styles */
+.logo {
+    color: #ffd700;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo i {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: #ffb700;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffd700;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.nav-item a:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+    color: #ffd700;
+}
+
+.nav-item a.active {
+    background: rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0; height: 2px;
+    background: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-item a:hover::after {
+    width: 80%;
+}
+
+/* Phone Button */
+.phone-btn {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Page Header */
+.page-header {
+    position: relative;
+    min-height: 50vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('pic1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 120px 1rem 2rem;
+}
+
+.page-header-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+}
+
+.page-header-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+/* Section Styles */
+.section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #1e3c72;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(60px, 12vw, 100px);
+    height: 4px;
+    background: linear-gradient(45deg, #ffd700, #1e3c72);
+    border-radius: 2px;
+}
+
+/* Company Overview */
+.company-overview {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+
+.overview-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.overview-text {
+    text-align: center;
+}
+
+.overview-text p {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.highlight {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+/* Company Stats */
+.company-stats {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.stat-card:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.stat-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: bold;
+    color: #ffd700;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: #f1f1f1;
+    font-weight: 500;
+}
+
+/* Mission Vision Values */
+.mission-vision {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mvv-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+.mvv-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.mvv-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: #ffd700;
+    transition: all 0.4s ease;
+}
+
+.mvv-card:hover .mvv-icon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    transform: scale(1.1);
+}
+
+.mvv-card h3 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-weight: 600;
+}
+
+.mvv-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Team Section */
+.team-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2.5rem;
+    color: #1e3c72;
+}
+
+.team-card h4 {
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+}
+
+.team-card .position {
+    color: #b8c5d6;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 1rem;
+}
+
+.team-card p {
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Why Choose Us */
+.why-choose {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.reason-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
+}
+
+.reason-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.reason-card:hover .reason-icon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+}
+
+.reason-content h4 {
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-weight: 600;
+}
+
+.reason-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+/* Footer */
+.footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+}
+
+.footer p { 
+    opacity: 0.9; 
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Menu Styles for screens <= 1023px */
+@media (max-width: 1023px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #1e3c72;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-item a {
+        padding: 1rem 2rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        display: block;
+        text-align: center;
+        border-radius: 15px;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        min-width: 200px;
+    }
+
+    .nav-item a:hover {
+        background: #ffd700;
+        color: #1e3c72;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .page-header {
+        min-height: 40vh;
+        padding: 100px 1rem 2rem;
+    }
+
+    .mvv-grid,
+    .team-grid,
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .reason-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .bg-animated {
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+        height: 55px;
+    }
+
+    .page-header {
+        padding: 120px 0.5rem 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .phone-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .particle {
+        display: none;
+    }
+}
+
+/* Focus styles for accessibility */
+.nav-item a:focus,
+.phone-btn:focus,
+.mobile-menu-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .mobile-menu-toggle,
+    .particle {
+        display: none;
+    }
+
+    .page-header {
+        background: #1e3c72 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+/* Certifications Section */
+.certifications {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+.section-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+/* Grid layout responsive */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    margin-top: 3rem;
+    justify-items: center;
+}
+.cert-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.cert-card img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+.cert-card:hover img {
+    transform: scale(1.05);
+}
+.cert-card p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #1e3c72;
+    font-weight: 500;
+}
+
+/* Mobile & Tablet adjustments */
+@media (max-width: 768px) {
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .cert-card {
+        padding: 0.8rem;
+    }
+    .cert-card p {
+        font-size: 0.85rem;
+    }
+}
+@media (max-width: 480px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+    .cert-card {
+        width: 90%;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 0.2s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.8s;"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-person-digging"></i> 
+                จตุพรพิเศษ
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="about.html" class="active">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="product.html">สินค้าของเรา</a></li>
+                    <li class="nav-item"><a href="contact.html">ติดต่อ</a></li>
+                </ul>
+            </nav>
+
+            <!-- ปุ่มโทรศัพท์ -->
+            <a href="tel:081-661-3863" class="phone-btn" aria-label="Call us">
+                <i class="fas fa-phone"></i> 
+                <span>081-661-3863</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>
+                <i class="fas fa-users"></i>
+                เกี่ยวกับเรา
+            </h1>
+            <p>ความเป็นมาและประสบการณ์กว่า 20 ปีในวงการเสาเข็มและงานก่อสร้าง</p>
+        </div>
+    </section>
+
+    <!-- Company Overview Section -->
+    <section class="section company-overview animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">ประวัติบริษัท</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p><span class="highlight">บริษัท จตุพรพิเศษ กรุ๊ป จำกัด</span> เลขนิติบุคคคล 0105560165122 ก่อตั้งโดยมีจุดเริ่มต้นจากความมุ่งมั่นในการให้บริการด้านงานเสาเข็มและการผลิตคอนกรีตสำเร็จรูปคุณภาพสูง</p>
+                    
+                    <p>ตั้งอยู่ที่ <strong>เลขที่ 96 หมู่ 10 ตำบลยางลูกเสือ อำเภอองครักษ์ จังหวัดนครนายก</strong> ซึ่งเป็นทำเลที่เหมาะสมสำหรับการผลิตและการขนส่งไปยังพื้นที่ต่างๆ ในภาคกลางและปริมณฑล</p>
+
+                    <p>จดทะเบียนเป็นนิติบุคคลเมื่อวันที่ 29 กันยายน 2560 <strong>ทุนจดทะเบียน 5,000,000 บาท</strong>s ยอดขายปิดงบดุล ปี 2566 อยู่ที่ 92,845,369.55 บาท และยอดขายปิดงบดุล ปี 2567 อยู่ที่ 98,932,677.63 บาท</p>
+                    
+                    <p>ปัจจุบันเรามีโรงงานผลิตที่ได้รับการรับรองมาตรฐาน พร้อมเครื่องจักรและอุปกรณ์ที่ทันสมัย สามารถรองรับความต้องการของลูกค้าได้อย่างครบครัน ตั้งแต่โครงการเล็กจนถึงโครงการขนาดใหญ่</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Certifications Section -->
+<section class="certifications animate-on-scroll" id="certifications">
+    <div class="container">
+        <h2 class="section-title">ใบรับรองบริษัท</h2>
+        <div class="certifications-grid">
+            <div class="cert-card animate-on-scroll">
+                <img src="pic13.png" alt="ใบรับรอง 1">
+                <p>ใบรับรองบริษัท</p>
+            </div>
+            <div class="cert-card animate-on-scroll">
+                <img src="pic14.png" alt="ใบรับรอง 2">
+                <p>มาตรฐานความปลอดภัยในการก่อสร้าง</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Company Stats Section -->
+    <section class="section company-stats animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">ความสำเร็จในตัวเลข</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" data-count="500">0+</span>
+                    <span class="stat-label">โครงการสำเร็จ</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="20">0+</span>
+                    <span class="stat-label">ปีประสบการณ์</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="50">0+</span>
+                    <span class="stat-label">ช่างผู้เชี่ยวชาญ</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="100">0%</span>
+                    <span class="stat-label">ความพึงพอใจ</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">เครื่องจักรทันสมัย</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="24">24</span>
+                    <span class="stat-label">ชั่วโมงบริการ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Vision Values Section -->
+    <section class="section mission-vision animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">พันธกิจ วิสัยทัศน์ และค่านิยม</h2>
+            <div class="mvv-grid">
+                <div class="mvv-card animate-on-scroll">
+                    <div class="mvv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>พันธกิจ</h3>
+                    <p>มุ่งมั่นในการผลิตและจำหน่ายเสาเข็ม แผ่นพื้นคอนกรีต และให้บริการตอกเสาเข็มคุณภาพสูง ด้วยเทคโนโลยีทันสมัยและทีมงานมืออาชีพ เพื่อสร้างรากฐานที่มั่นคงให้กับทุกโครงการก่อสร้าง</p>
+                </div>
+                
+                <div class="mvv-card animate-on-scroll">
+                    <div class="mvv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>วิสัยทัศน์</h3>
+                    <p>ผลิตเสาเข็ม แผ่นพื้น ท่อคอนกรีต ให้ได้สินค้าตามมาตรฐานลูกค้า จัดส่งตรงเวลา พัฒนาระบบงานบริการให้ได้มาตรฐานสากลรองรับการใช้งานของลูกค้ากลุ่มต่างๆ</p>
+                </div>
+                
+                <div class="mvv-card animate-on-scroll">
+                    <div class="mvv-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>ค่านิยม</h3>
+                    <p>มุ่งมั่นพัฒนาสินค้าและบริการที่มีคุณภาพ ด้วยราคายุติธรรม และรับผิดชอบต่อสังคมและสิ่งแวดล้อมในชุมชน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team-section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">ทีมงานของเรา</h2>
+            <div class="team-grid">
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>คุณจตุพร</h4>
+                    <p class="position">ผู้บริหาร</p>
+                    <p>ผู้ก่อตั้งและผู้นำบริษัทด้วยประสบการณ์กว่า 20 ปีในวงการเสาเข็ม มีวิสัยทัศน์ในการพัฒนาธุรกิจและมุ่งมั่นในการให้บริการที่เป็นเลิศ</p>
+                </div>
+                
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>ทีมช่างเชี่ยวชาญ</h4>
+                    <p class="position">ช่างตอกเสาเข็ม</p>
+                    <p>ทีมช่างมืออาชีพกว่า 50 คน ผ่านการอบรมและมีประสบการณ์สูง พร้อมให้บริการตอกเสาเข็มด้วยความปลอดภัยและแม่นยำ</p>
+                </div>
+                
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>ทีมควบคุมคุณภาพ</h4>
+                    <p class="position">วิศวกรและนักเทคนิค</p>
+                    <p>ทีมวิศวกรและนักเทคนิคที่คอยควบคุมคุณภาพในทุกขั้นตอน ตั้งแต่การผลิตจนถึงการติดตั้ง เพื่อให้ได้ผลงานที่มีมาตรฐานสูงสุด</p>
+                </div>
+                
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>ทีมบริการลูกค้า</h4>
+                    <p class="position">ฝ่ายขายและบริการหลังการขาย</p>
+                    <p>ทีมบริการลูกค้าที่พร้อมให้คำปรึกษาตลอด 24 ชั่วโมง ด้วยความรู้ความเข้าใจในผลิตภัณฑ์และบริการ เพื่อตอบสนองความต้องการของลูกค้า</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-choose animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">ทำไมต้องเลือกเรา</h2>
+            <div class="reasons-grid">
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>คุณภาพได้รับการตรวจสอบ</h4>
+                        <p>ผลิตภัณฑ์ทุกชิ้นผ่านการตรวจสอบคุณภาพอย่างเข้มงวด และได้รับการรับรองตามมาตรฐานโรงงานคอนกรีต พร้อมใบรับประกันคุณภาพ</p>
+                    </div>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>การส่งมอบตรงเวลา</h4>
+                        <p>ระบบการผลิตและจัดส่งที่มีประสิทธิภาพ รับประกันการส่งมอบสินค้าตรงตามกำหนดเวลา พร้อมบริการขนส่งครอบคลุมทั่วประเทศ</p>
+                    </div>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>เครื่องจักรทันสมัย</h4>
+                        <p>ใช้เครื่องจักรและอุปกรณ์ที่ทันสมัยจากต่างประเทศ รวมถึงปั้นจั่นตอกเสาเข็มหลากหลายรุ่น เหมาะสมกับทุกสภาพพื้นที่</p>
+                    </div>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>ราคาคุ้มค่า</h4>
+                        <p>เสนอราคาที่แข่งขันได้และยุติธรรม พร้อมบริการคำปรึกษาเพื่อช่วยประหยัดต้นทุนโครงการ โดยไม่ลดทอนคุณภาพ</p>
+                    </div>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>ความปลอดภัยสูงสุด</h4>
+                        <p>ยึดมั่นในมาตรฐานความปลอดภัยในการทำงาน พร้อมประกันภัยครอบคลุม และระบบควบคุมคุณภาพที่เข้มงวด</p>
+                    </div>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="reason-content">
+                        <h4>บริการหลังการขาย</h4>
+                        <p>ให้บริการหลังการขายที่ครบวงจร รวมถึงการบำรุงรักษา การแก้ไขปัญหา และการให้คำปรึกษาเพิ่มเติมตลอดอายุการใช้งาน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 บริษัท จตุพรพิเศษ กรุ๊ป จำกัด สงวนลิขสิทธิ์ | ออกแบบและพัฒนาด้วยความใส่ใจ</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const body = document.body;
+
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            const icon = this.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                this.setAttribute('aria-expanded', 'true');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                this.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu when clicking on navigation links
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Enhanced Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Hide/show header on scroll (optional enhancement)
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    
+                    // Add stagger animation for cards
+                    if (entry.target.classList.contains('mvv-grid') || 
+                        entry.target.classList.contains('team-grid') || 
+                        entry.target.classList.contains('reasons-grid')) {
+                        const cards = entry.target.querySelectorAll('.mvv-card, .team-card, .reason-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced particle creation (only on larger screens)
+        function createParticle() {
+            if (window.innerWidth > 768) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 6000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 4000);
+
+        // Enhanced counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 60; // 60 frames for smooth animation
+            const hasPlus = element.textContent.includes('+');
+            const hasPercent = element.textContent.includes('%');
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                let displayValue = Math.floor(current);
+                if (hasPlus) displayValue += '+';
+                if (hasPercent) displayValue += '%';
+                
+                element.textContent = displayValue;
+            }, 16); // ~60fps
+        }
+
+        // Start counters when stats section is in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        setTimeout(() => {
+                            const text = stat.textContent;
+                            const targetValue = parseInt(stat.getAttribute('data-count'), 10);
+                            animateCounter(stat, targetValue);
+                        }, index * 200);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.company-stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Handle window resize for responsive adjustments
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Close mobile menu on desktop resize
+                if (window.innerWidth > 1023) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+                
+                // Remove particles on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.particle').forEach(particle => {
+                        if (particle.style.position === 'absolute') {
+                            particle.remove();
+                        }
+                    });
+                }
+            }, 250);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+            // Animate page header content on load
+            setTimeout(() => {
+                const pageHeaderContent = document.querySelector('.page-header-content');
+                if (pageHeaderContent) {
+                    pageHeaderContent.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            }, 500);
+        });
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // Close mobile menu with Escape key
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
+        });
+
+        // Add hover effects for better user experience
+        document.querySelectorAll('.mvv-card, .team-card, .reason-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial classes for animations
+            document.body.classList.add('js-loaded');
+            
+            // Set initial ARIA attributes
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.setAttribute('aria-controls', 'nav-menu');
+            navMenu.setAttribute('aria-labelledby', 'mobile-menu-toggle');
+        });
+    </script>
+</body>
+</html>

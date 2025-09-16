@@ -1,585 +1,899 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Google Fonts Kanit -->
+    <!-- Google Fonts Kanit -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>บริษัท เสาเข็มไทย จำกัด - ผู้เชี่ยวชาญด้านงานเสาเข็ม</title>
+    <title>บริษัท จตุพรพิเศษ กรุ๊ป จำกัด - ผู้เชี่ยวชาญด้านงานเสาเข็ม</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        }
-
-        /* Animated background */
-        .bg-animated {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #1e3c72, #2a5298, #ffd700, #ffffff);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 215, 0, 0.8);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(30, 60, 114, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(30, 60, 114, 0.98);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffd700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-item a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        .nav-item a:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateY(-2px);
-            color: #ffd700;
-        }
-
-        .nav-item a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: #ffd700;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-item a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, #ffffff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
-            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #1e3c72;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 1s both;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: #1e3c72;
-            margin-bottom: 3rem;
-            position: relative;
-            animation: slideInFromLeft 1s ease;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(45deg, #ffd700, #1e3c72);
-            border-radius: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-            background-clip: padding-box;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #1e3c72, #ffd700);
-            z-index: -1;
-            margin: -2px;
-            border-radius: 20px;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #1e3c72;
-            transform: rotateY(180deg);
-        }
-
-        .service-card h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            position: relative;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #ffd700;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffd700;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: rgba(255, 255, 255, 0.98);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1e3c72;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #ffd700;
-            background: white;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #1e3c72;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .contact-info h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .contact-info p {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1e3c72;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .footer p {
-            opacity: 0.8;
-        }
-
-        /* Scroll animations */
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1e3c72, #ffd700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-content {
-            text-align: center;
-            color: white;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+/* Reset และ Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+/* BG animated overlay */
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.3; }
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.header.scrolled {
+    padding: 0.3rem 0;
+    background: rgba(30, 60, 114, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+}
+
+/* Logo Styles */
+.logo {
+    color: #ffd700;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo i {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: #ffb700;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffd700;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.nav-item a:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+    color: #ffd700;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0; height: 2px;
+    background: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-item a:hover::after {
+    width: 80%;
+}
+
+/* Phone Button */
+.phone-btn {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+/* Background ปรับใหม่ ใช้ pic1.jpg */
+/* Background ปรับใหม่ พร้อมเฟดดำ */
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('pic1.jpg') center/cover no-repeat;
+}
+
+/* Hero background ปรับให้มีเฟดดำ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('pic1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 80px 1rem 2rem;
+}
+
+
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 20px;
+    width: 100%;
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #ffd700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* Stats Grid */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.stat-item {
+    background: rgba(255,255,255,0.1);
+    padding: clamp(12px, 3vw, 18px);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.stat-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+.stat-number {
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: bold;
+    color: #ffd700;
+    display: block;
+}
+
+.stat-label {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    color: #f1f1f1;
+}
+
+/* CTA Button */
+.cta-button {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: clamp(10px, 3vw, 14px) clamp(20px, 4vw, 30px);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Services Section */
+.services {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.container h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #000000;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #1e3c72;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(60px, 12vw, 100px);
+    height: 4px;
+    background: linear-gradient(45deg, #ffd700, #1e3c72);
+    border-radius: 2px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* แสดง 2 การ์ดต่อแถว */
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: 3rem;
+}
+
+.service-card {
+    background: white;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.05), rgba(30, 60, 114, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon {
+    width: clamp(200px, 15vw, 80px); /* ปรับขนาดวงกลม */
+    height: clamp(200px, 15vw, 80px);
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem; /* auto เพื่อให้อยู่ตรงกลาง horizontal */
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
+    overflow: hidden; /* ป้องกันรูปเกินขอบวงกลม */
+}
+
+
+
+.service-card:hover .service-icon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    transform: rotateY(180deg) scale(1.1);
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+}
+
+.service-card h3 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* About Section */
+.about {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    color: #ffd700;
+    text-align: center;
+    font-weight: 700;
+}
+
+.about-text p {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+/* Contact Section */
+.contact {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contact-form {
+    background: white;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    order: 2;
+}
+
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1e3c72;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: clamp(0.8rem, 2vw, 1rem);
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: white;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    padding: clamp(0.8rem, 2vw, 1rem) 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+
+.contact-info {
+    order: 1;
+    text-align: center;
+}
+
+.contact-info h3 {
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    font-weight: 600;
+}
+
+.contact-info p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    line-height: 1.6;
+}
+
+.contact-info p i {
+    color: #1e3c72;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+}
+
+.footer p { 
+    opacity: 0.9; 
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Menu Styles for screens <= 1023px */
+@media (max-width: 1023px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #1e3c72;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-item a {
+        padding: 1rem 2rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        display: block;
+        text-align: center;
+        border-radius: 15px;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        min-width: 200px;
+    }
+
+    .nav-item a:hover {
+        background: #ffd700;
+        color: #1e3c72;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 90vh;
+        padding: 100px 1rem 2rem;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .phone-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .bg-animated {
+        background-attachment: scroll;
+    }
+
+    .contact-content {
+        gap: 2rem;
+    }
+
+    .contact-info p {
+        justify-content: flex-start;
+    }
+}
+
+/* Large tablet / small desktop */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .contact-info {
+        order: 2;
+        text-align: left;
+    }
+
+    .contact-form {
+        order: 1;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .contact-info {
+        order: 2;
+        text-align: left;
+    }
+
+    .contact-form {
+        order: 1;
+    }
+
+    .contact-info p {
+        justify-content: flex-start;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .about-text {
+        text-align: left;
+    }
+
+    .about-text h2 {
+        text-align: left;
+    }
+
+    .about-text p {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+        height: 55px;
+    }
+
+    .hero {
+        padding: 120px 0.5rem 2rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .phone-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .particle {
+        display: none;
+    }
+
+    .services-grid {
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Ultra small screens */
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1rem;
+        gap: 5px;
+    }
+
+    .logo i {
+        font-size: 1.2rem;
+    }
+
+    .phone-btn {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+        gap: 3px;
+    }
+
+    .nav-container {
+        height: 50px;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .service-icon,
+    .logo i {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 80vh;
+        padding: 80px 1rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Focus styles for accessibility */
+.nav-item a:focus,
+.phone-btn:focus,
+.cta-button:focus,
+.submit-btn:focus,
+.mobile-menu-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .mobile-menu-toggle,
+    .particle {
+        display: none;
+    }
+
+    .hero {
+        background: #1e3c72 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+.button {
+    display: inline-block;
+    padding: clamp(10px, 3vw, 14px) clamp(20px, 4vw, 30px);
+    color: #ffd700;          /* สีตัวอักษร */
+    text-decoration: none;    /* เอา underline ออก */
+    border: 2px solid #ffd700; /* ขอบปุ่ม */
+    border-radius: 5px;       /* ปรับมุมโค้ง */
+    background: transparent;   /* พื้นหลังโปร่งใส */
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+/* สไตล์เมื่อ hover */
+.button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <h2>กำลังโหลด...</h2>
-        </div>
-    </div>
-
     <!-- Animated Background -->
     <div class="bg-animated"></div>
 
@@ -597,120 +911,433 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="nav-container">
-            <a href="#" class="logo">⚒️ เสาเข็มไทย</a>
+            <a href="#" class="logo">
+                <i class="fas fa-person-digging"></i> 
+                จตุพรพิเศษ
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item"><a href="#home">หน้าหลัก</a></li>
-                    <li class="nav-item"><a href="#services">บริการ</a></li>
-                    <li class="nav-item"><a href="#about">เกี่ยวกับเรา</a></li>
-                    <li class="nav-item"><a href="#contact">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="about.html">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="product.html">สินค้าของเรา</a></li>
+                    <li class="nav-item"><a href="contact.html">ติดต่อ</a></li>
                 </ul>
             </nav>
+
+            <!-- ปุ่มโทรศัพท์ -->
+            <a href="tel:081-661-3863" class="phone-btn" aria-label="Call us">
+                <i class="fas fa-phone"></i> 
+                <span>081-661-3863</span>
+            </a>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>ผู้เชี่ยวชาญด้านเสาเข็ม</h1>
-            <p>มากกว่า 20 ปีของประสบการณ์ในงานตอกเสาเข็มและงานฐานราก</p>
+            <h1>
+                <i class="fas fa-building-columns"></i> 
+                ผู้เชี่ยวชาญด้านเสาเข็ม
+            </h1>
+            <h1>บริษัท จตุพรพิเศษ กรุ๊ป จำกัด</h1>
+            <p>จำหน่ายเสาเข็ม แผ่นพื้นคอนกรีต รับตอกเสาเข็ม และวัสดุก่อสร้างทุกชนิด</p>
+            
+            <div class="stats">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">โครงการสำเร็จ</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">ปีประสบการณ์</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">ช่างผู้เชี่ยวชาญ</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">ความพึงพอใจ</span>
+                </div>
+            </div>
             <a href="#contact" class="cta-button">ปรึกษาโครงการ</a>
+            <a href="#services" class="button">บริการของเรา</a>
+
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section class="services animate-on-scroll" id="services">
-        <div class="container">
-            <h2 class="section-title">บริการของเรา</h2>
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">🏗️</div>
-                    <h3>ตอกเสาเข็ม</h3>
-                    <p>บริการตอกเสาเข็มทุกประเภท เสาเข็มคอนกรีต เสาเข็มเหล็ก และเสาเข็มไมโครไพล์</p>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">🔍</div>
-                    <h3>ตรวจสอบคุณภาพ</h3>
-                    <p>การตรวจสอบความแข็งแรงและคุณภาพของเสาเข็มด้วยเทคโนโลยีทันสมัย</p>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">📋</div>
-                    <h3>ออกแบบฐานราก</h3>
-                    <p>บริการออกแบบและคำนวณฐานรากให้เหมาะสมกับสภาพดินและโครงสร้าง</p>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">⚙️</div>
-                    <h3>เช่าเครื่องจักร</h3>
-                    <p>เช่าเครื่องตอกเสาเข็มและอุปกรณ์ก่อสร้างคุณภาพสูง พร้อมทีมช่างผู้เชี่ยวชาญ</p>
-                </div>
+   <!-- About Section -->
+   <section class="about animate-on-scroll" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>เกี่ยวกับเรา</h2>
+                <p>บริษัท จตุพรพิเศษ กรุ๊ป จำกัด ตั้งอยู่ในเขตพื้นที่อำเภอองครักษ์ จังหวัดนครนายก ด้วยประสบการณ์ยาวนานด้านการผลิตเสาเข็ม แผ่นพื้นท่อคอนกรีต ตามมาตรฐานโรงงานคอนกรีต</p>
+                <p>นอกจากนี้ยังรับบริการตอกเสาเข็มด้วยปั้นจั่นชนิดต่างๆ เช่น แบบรางและแบบล้อแทร็ก เรามั่นใจว่าจะส่งมอบผลงานที่มีคุณภาพสูงสุดให้กับลูกค้าทุกราย</p>
+                <p>เราให้ความสำคัญกับความปลอดภัยและคุณภาพงาน โดยใช้วัสดุคุณภาพสูงและเทคโนโลยีที่ทันสมัยเพื่อให้ได้ผลงานที่มีความแข็งแรงและทนทาน</p>
             </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about animate-on-scroll" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>เกี่ยวกับเรา</h2>
-                    <p>บริษัท เสาเข็มไทย จำกัด เป็นผู้เชี่ยวชาญด้านงานเสาเข็มและงานฐานรากมากกว่า 20 ปี เราให้บริการครบวงจรตั้งแต่การออกแบบ การตอกเสาเข็ม จนถึงการตรวจสอบคุณภาพ</p>
-                    <p>ด้วยทีมงานมืออาชีพและเครื่องมือทันสมัย เรามั่นใจว่าจะส่งมอบผลงานที่มีคุณภาพสูงสุดให้กับลูกค้าทุกราย</p>
+    </div>
+</section>
+<!-- Services Section -->
+<section class="services animate-on-scroll" id="services">
+    <div class="container">
+        <h2 class="section-title">บริการของเรา</h2>
+        <h3>บริการตอกเสาเข็มด้วยปั้นจั่นเพื่อตอบสนองความต้องการของลูกค้าทั่วไทย</h3>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <img src="pic2.jpg" alt="ตอกเสาเข็มแบบราง" style="width:180px; height:180px;">
                 </div>
-                <div class="stats">
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">โครงการสำเร็จ</span>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">20+</span>
-                        <span class="stat-label">ปีประสบการณ์</span>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">ช่างผู้เชี่ยวชาญ</span>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">ความพึงพอใจ</span>
-                    </div>
+                <h3>ตอกเสาเข็มแบบราง</h3>
+                <p>เหมาะสำหรับโครงการก่อสร้างขนาดใหญ่ ใช้เครนรางและตอกเสาเข็มยาวอย่างมีประสิทธิภาพ รับน้ำหนักสูงและมั่นคง</p>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <img src="pic3.jpg" alt="ตอกเสาเข็มแบบตีนตะขาบ"  style="width:180px; height:180px;">
                 </div>
+                <h3>ตอกเสาเข็มแบบตีนตะขาบ</h3>
+                <p>เหมาะกับพื้นที่ยากต่อการเข้าถึง ใช้รถตีนตะขาบเคลื่อนที่ได้ทุกสภาพพื้นที่ ตอกเสาเข็มได้แม่นยำและปลอดภัย</p>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <img src="pic4.jpg" alt="ตอกเสาเข็มแบบล้อยาง" style="width:180px; height:180px;">
+                </div>
+                <h3>ตอกเสาเข็มแบบล้อยาง</h3>
+                <p>เหมาะสำหรับพื้นที่จำกัดและถนนลาดยาง ใช้รถล้อยางเคลื่อนที่รวดเร็ว ตอกเสาเข็มได้อย่างมีประสิทธิภาพและลดผลกระทบต่อพื้นที่รอบข้าง</p>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <img src="pic5.jpg" alt="ตอกเสาเข็มแบบไมโครไพล" style="width:180px; height:180px;">
+                </div>
+                <h3>ตอกเสาเข็มแบบไมโครไพล</h3>
+                <p>เหมาะสำหรับงานเสาเข็มขนาดเล็กและพื้นที่จำกัด ใช้เครื่องมือเฉพาะทาง ตอกเสาเข็มได้ตรงตามมาตรฐานและโครงสร้างมั่นคง</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- Products Section -->
+<section class="products animate-on-scroll" id="products">
+    <div class="container">
+        <div class="products-header">
+            <h2 class="section-title">สินค้าของเรา</h2>
+            <a href="product.html" class="shop-now-btn">
+                Shop Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="products-slider">
+            <div class="product-card">
+                <img src="pic6.jpg" alt="เสาเข็มไอ">
+                <h4>เสาเข็มไอ</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic7.jpg" alt="เสาเข็มสี่เหลี่ยมตัน">
+                <h4>เสาเข็มสี่เหลี่ยมตัน</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic8.jpg" alt="เสารั้วบ้าน">
+                <h4>เสารั้วบ้าน</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic9.jpeg" alt="เสาเข็มไมโครไพล์">
+                <h4>เสาเข็มไมโครไพล์</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic10.jpg" alt="แผ่นพื้นสำเร็จรูป">
+                <h4>แผ่นพื้นสำเร็จรูป</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic11.webp" alt="ท่อคอนกรีตอัดแรง">
+                <h4>ท่อคอนกรีตอัดแรง</h4>
+            </div>
+            <div class="product-card">
+                <img src="pic12.webp" alt="บ่อพัก">
+                <h4>บ่อพัก</h4>
+            </div>
+        </div>
+    </div>
+</section>
 
+<style>
+    .products-header {
+    display: flex;
+    justify-content: space-between; /* หัวข้อซ้าย ปุ่มขวา */
+    align-items: center; /* จัดแนวตรงกลางตามแนวตั้ง */
+    margin-bottom: 2rem;
+}
+
+    /* Shop Now Button */
+.shop-now-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    color: #1e3c72;
+    transform: scale(1.05);
+}
+
+    /* Products Section */
+.products {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+}
+
+.products-slider {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+}
+
+.products-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.products-slider::-webkit-scrollbar-thumb {
+    background: #ffd700;
+    border-radius: 4px;
+}
+
+.products-slider::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+}
+
+.product-card {
+    min-width: 200px;
+    flex: 0 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(30,60,114,0.1);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(30,60,114,0.2);
+}
+
+.product-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+}
+
+.product-card h4 {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: #1e3c72;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-card {
+        min-width: 150px;
+    }
+    .product-card img {
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        min-width: 130px;
+    }
+    .product-card img {
+        height: 100px;
+    }
+}
+
+</style>
+<!-- Advantages Section -->
+<section class="advantages animate-on-scroll" id="advantages">
+    <div class="container">
+        <h2 class="section-title">ข้อได้เปรียบและการแข่งขัน</h2>
+        <p class="advantages-intro">
+            เรามุ่งมั่นผลิตสินค้าที่มี<strong>คุณภาพสูงสุด</strong>พร้อมบริการในราคายุติธรรม 
+            เพิ่มประสิทธิภาพกระบวนการผลิตด้วยเทคโนโลยีทันสมัย และดำเนินโครงการระบบด้านไอที 
+            พัฒนากระบวนการทำงาน ผลิต และเชื่อมโยง <strong>Supply Chain</strong> กับลูกค้าอย่างราบรื่น 
+            พร้อมระบบบริการลูกค้า <strong>24 ชั่วโมง</strong> ทีมงานพร้อมให้คำปรึกษาและสนับสนุนอย่างมืออาชีพ
+        </p>
+
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fas fa-gem"></i></div>
+                <h3>คุณภาพเหนือชั้น</h3>
+                <p>ผลิตสินค้าที่ได้มาตรฐานระดับสากลและผ่านการตรวจสอบคุณภาพทุกขั้นตอน</p>
+            </div>
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fas fa-bolt"></i></div>
+                <h3>ประสิทธิภาพสูง</h3>
+                <p>กระบวนการผลิตรวดเร็วและแม่นยำ ลดเวลาการทำงานและต้นทุนอย่างชัดเจน</p>
+            </div>
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>เชื่อมโยง<br>Supply Chain</h3>
+                <p>ระบบไอทีช่วยเชื่อมต่อทุกขั้นตอนการผลิตถึงลูกค้าอย่างเรียลไทม์</p>
+            </div>
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fas fa-headset"></i></div>
+                <h3>บริการ 24 ชั่วโมง</h3>
+                <p>ทีมงานพร้อมให้คำปรึกษาและสนับสนุนลูกค้าตลอดวันอย่างมืออาชีพ</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Advantages Section */
+.advantages {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    text-align: center;
+}
+
+.advantages .section-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 1rem;
+    position: relative;
+    color: #ffd700;
+}
+
+.advantages-intro {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    opacity: 0.95;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: 2rem;
+}
+
+.advantage-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.advantage-card h3{
+    color: #ffb400;
+}
+.advantage-card p{
+    color: rgb(172, 182, 255)
+}
+.advantage-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
+}
+
+.adv-icon {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #ffd700;
+    margin-bottom: 1rem;
+}
+
+.advantage-card h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 0.8rem;
+}
+
+.advantage-card p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .advantages-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width:480px){
+    .advantages-grid{
+        grid-template-columns: 1fr;
+    }
+}
+</style>
     <!-- Contact Section -->
     <section class="contact animate-on-scroll" id="contact">
         <div class="container">
             <h2 class="section-title">ติดต่อเรา</h2>
             <div class="contact-content">
                 <div class="contact-form">
-                    <form>
+                    <form id="contact-form">
                         <div class="form-group">
                             <label for="name">ชื่อ-นามสกุล</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required placeholder="กรุณากรอกชื่อ-นามสกุล">
                         </div>
                         <div class="form-group">
                             <label for="phone">เบอร์โทรศัพท์</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" required placeholder="กรุณากรอกเบอร์โทรศัพท์">
                         </div>
                         <div class="form-group">
                             <label for="email">อีเมล</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required placeholder="กรุณากรอกอีเมล">
                         </div>
                         <div class="form-group">
                             <label for="message">รายละเอียดโครงการ</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="กรุณาระบุรายละเอียดโครงการของท่าน"></textarea>
                         </div>
                         <button type="submit" class="submit-btn">ส่งข้อความ</button>
                     </form>
                 </div>
+                
                 <div class="contact-info">
                     <h3>ข้อมูลติดต่อ</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 ถนนสุขุมวิท แขวงคลองตัน เขตคลองเตย กรุงเทพฯ 10110</p>
-                    <p><i class="fas fa-phone"></i> Tel: 02-123-4567</p>
-                    <p><i class="fas fa-mobile-alt"></i> Mobile: 089-123-4567</p>
-                    <p><i class="fas fa-envelope"></i> Email: info@pilethailand.com</p>
-                    <p><i class="fas fa-clock"></i> เวลาทำการ: จันทร์-เสาร์ 08:00-18:00 น.</p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> 
+                        เลขที่ 96 ม.10 ตำบล ยางลูกเสือ<br>อำเภอ องครักษ์ จังหวัด นครนายก 
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i> 
+                        Tel: 081-661-3863
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i> 
+                        Email: Jatupon465kb@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-clock"></i> 
+                        เวลาทำการ: จันทร์-เสาร์ 08:00-18:00 น.
+                    </p>
+                    <p>
+                        <i class="fas fa-tools"></i> 
+                        บริการฉุกเฉิน: 24 ชั่วโมง
+                    </p>
                 </div>
             </div>
         </div>
@@ -719,43 +1346,92 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 บริษัท เสาเข็มไทย จำกัด สงวนลิขสิทธิ์</p>
+            <p>&copy; 2025 บริษัท จตุพรพิเศษ กรุ๊ป จำกัด สงวนลิขสิทธิ์ | ออกแบบและพัฒนาด้วยความใส่ใจ</p>
         </div>
     </footer>
 
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 2000);
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const body = document.body;
+
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            const icon = this.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                this.setAttribute('aria-expanded', 'true');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                this.setAttribute('aria-expanded', 'false');
+            }
         });
 
-        // Header scroll effect
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu when clicking on navigation links
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Enhanced Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('header');
+
         window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+
+            // Hide/show header on scroll (optional enhancement)
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
         });
 
-        // Smooth scrolling for navigation links
+        // Enhanced smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Intersection Observer for scroll animations
+        // Enhanced Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -765,6 +1441,16 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
+                    
+                    // Add stagger animation for service cards
+                    if (entry.target.classList.contains('services-grid')) {
+                        const cards = entry.target.querySelectorAll('.service-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }
                 }
             });
         }, observerOptions);
@@ -774,71 +1460,163 @@
             observer.observe(el);
         });
 
-        // Add more floating particles dynamically
+        // Enhanced particle creation (only on larger screens)
         function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            document.body.appendChild(particle);
+            if (window.innerWidth > 768) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(particle);
 
-            setTimeout(() => {
-                particle.remove();
-            }, 6000);
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 6000);
+            }
         }
 
         // Create particles periodically
-        setInterval(createParticle, 3000);
+        setInterval(createParticle, 4000);
 
-        // Form submission with animation
-        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+        // Enhanced form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const button = this.querySelector('.submit-btn');
             const originalText = button.textContent;
             
+            // Disable button and show loading state
+            button.disabled = true;
             button.textContent = 'กำลังส่ง...';
-            button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+            button.style.background = 'linear-gradient(45deg, #6c757d, #495057)';
             
+            // Simulate form submission
             setTimeout(() => {
                 button.textContent = 'ส่งสำเร็จ! ✓';
+                button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                
                 setTimeout(() => {
                     button.textContent = originalText;
                     button.style.background = 'linear-gradient(45deg, #1e3c72, #2a5298)';
+                    button.disabled = false;
                     this.reset();
                 }, 2000);
             }, 1500);
         });
 
-        // Counter animation for stats
+        // Enhanced counter animation for stats
         function animateCounter(element, target) {
             let current = 0;
-            const increment = target / 100;
+            const increment = target / 60; // 60 frames for smooth animation
+            const hasPlus = element.textContent.includes('+');
+            const hasPercent = element.textContent.includes('%');
+            
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
                     current = target;
                     clearInterval(timer);
                 }
-                element.textContent = Math.floor(current);
-            }, 30);
+                
+                let displayValue = Math.floor(current);
+                if (hasPlus) displayValue += '+';
+                if (hasPercent) displayValue += '%';
+                
+                element.textContent = displayValue;
+            }, 16); // ~60fps
         }
 
-        // Start counters when in view
-        const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver((entries) => {
+        // Start counters when stats section is in view
+        const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'), 10);
-                    animateCounter(entry.target, target);
-                    counterObserver.unobserve(entry.target);
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        setTimeout(() => {
+                            const text = stat.textContent;
+                            const number = parseInt(text.replace(/[^\d]/g, ''), 10);
+                            animateCounter(stat, number);
+                        }, index * 200);
+                    });
+                    statsObserver.unobserve(entry.target);
                 }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Handle window resize for responsive adjustments
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Close mobile menu on desktop resize
+                if (window.innerWidth > 1023) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+                
+                // Remove particles on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.particle').forEach(particle => {
+                        if (particle.style.position === 'absolute') {
+                            particle.remove();
+                        }
+                    });
+                }
+            }, 250);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+            // Animate hero content on load
+            setTimeout(() => {
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    heroContent.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            }, 500);
+        });
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // Close mobile menu with Escape key
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
+        });
+
+        // Add hover effects for better user experience
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             });
         });
 
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial classes for animations
+            document.body.classList.add('js-loaded');
+            
+            // Set initial ARIA attributes
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.setAttribute('aria-controls', 'nav-menu');
+            navMenu.setAttribute('aria-labelledby', 'mobile-menu-toggle');
         });
     </script>
 </body>
-</html>
+</html

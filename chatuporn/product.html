@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>สินค้าของเรา - บริษัท จตุพรพิเศษ กรุ๊ป จำกัด</title>
+    <style>
+/* Reset และ Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+/* Background ปรับใหม่ ใช้ pic1.jpg */
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('pic1.jpg') center/cover no-repeat;
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.3; }
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.header.scrolled {
+    padding: 0.3rem 0;
+    background: rgba(30, 60, 114, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+}
+
+/* Logo Styles */
+.logo {
+    color: #ffd700;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo i {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: #ffb700;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffd700;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.nav-item a:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+    color: #ffd700;
+}
+
+.nav-item a.active {
+    background: rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0; height: 2px;
+    background: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-item a:hover::after {
+    width: 80%;
+}
+
+/* Phone Button */
+.phone-btn {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Page Header */
+.page-header {
+    position: relative;
+    min-height: 50vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('pic1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 120px 1rem 2rem;
+}
+
+.page-header-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+}
+
+.page-header-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+/* Section Styles */
+.section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #1e3c72;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(60px, 12vw, 100px);
+    height: 4px;
+    background: linear-gradient(45deg, #ffd700, #1e3c72);
+    border-radius: 2px;
+}
+
+/* Product Categories */
+.product-categories {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+
+.category-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.category-btn {
+    background: transparent;
+    border: 2px solid #1e3c72;
+    color: #1e3c72;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #1e3c72;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+/* Product Content */
+.product-content {
+    min-height: 400px;
+}
+
+.product-category {
+    display: none;
+}
+
+.product-category.active {
+    display: block;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.1);
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(30, 60, 114, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.product-image {
+    height: 200px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-image i {
+    font-size: 4rem;
+    color: #ffd700;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    color: #1e3c72;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.product-specs {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.spec-value {
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+/* Data Table Styles */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.data-table th {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 1rem 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.data-table td {
+    padding: 0.8rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+}
+
+.data-table tr:hover {
+    background: #f8f9fa;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Quote Button */
+.quote-btn {
+    background: linear-gradient(45deg, #ffd700, #ffb400);
+    color: #1e3c72;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.quote-btn:hover {
+    background: linear-gradient(45deg, #ffb400, #ffd700);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Product Features */
+.product-features {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: #1e3c72;
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotateY(180deg);
+}
+
+.feature-card h4 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.feature-card p {
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Footer */
+.footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+}
+
+.footer p { 
+    opacity: 0.9; 
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Menu Styles for screens <= 1023px */
+@media (max-width: 1023px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #1e3c72;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-item a {
+        padding: 1rem 2rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        display: block;
+        text-align: center;
+        border-radius: 15px;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        min-width: 200px;
+    }
+
+    .nav-item a:hover {
+        background: #ffd700;
+        color: #1e3c72;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .page-header {
+        min-height: 40vh;
+        padding: 100px 1rem 2rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .category-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+
+    .category-btn {
+        flex-shrink: 0;
+        min-width: 120px;
+    }
+
+    .data-table {
+        font-size: 0.8rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem 0.3rem;
+    }
+
+    .bg-animated {
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+        height: 55px;
+    }
+
+    .page-header {
+        padding: 120px 0.5rem 2rem;
+    }
+
+    .phone-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .particle {
+        display: none;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Focus styles for accessibility */
+.nav-item a:focus,
+.phone-btn:focus,
+.category-btn:focus,
+.quote-btn:focus,
+.mobile-menu-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .mobile-menu-toggle,
+    .particle {
+        display: none;
+    }
+
+    .page-header {
+        background: #1e3c72 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 0.2s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.8s;"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-person-digging"></i> 
+                จตุพรพิเศษ
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="about.html">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="product.html" class="active">สินค้าของเรา</a></li>
+                    <li class="nav-item"><a href="contact.html">ติดต่อ</a></li>
+                </ul>
+            </nav>
+
+            <!-- ปุ่มโทรศัพท์ -->
+            <a href="tel:081-661-3863" class="phone-btn" aria-label="Call us">
+                <i class="fas fa-phone"></i> 
+                <span>081-661-3863</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>
+                <i class="fas fa-boxes"></i>
+                สินค้าของเรา
+            </h1>
+            <p>ผลิตภัณฑ์คอนกรีตคุณภาพสูง เสาเข็ม แผ่นพื้น ท่อคอนกรีต และอุปกรณ์ก่อสร้างครบครัน</p>
+        </div>
+    </section>
+
+    <!-- Product Categories Section -->
+    <section class="section product-categories animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">หมวดหมู่สินค้า</h2>
+            
+            <!-- Category Navigation -->
+            <div class="category-nav">
+                <button class="category-btn active" onclick="showCategory('pile-i')">เสาเข็มไอ</button>
+                <button class="category-btn" onclick="showCategory('pile-square')">เสาเข็มสี่เหลี่ยมตัน</button>
+                <button class="category-btn" onclick="showCategory('fence-pile')">เสารั้วบ้าน</button>
+                <button class="category-btn" onclick="showCategory('micro-pile')">เสาเข็มไมโครไพล์</button>
+                <button class="category-btn" onclick="showCategory('precast-slab')">แผ่นพื้นสำเร็จรูป</button>
+                <button class="category-btn" onclick="showCategory('concrete-pipe')">ท่อคอนกรีตอัดแรง</button>
+                <button class="category-btn" onclick="showCategory('manhole')">บ่อพัก</button>
+            </div>
+
+            <!-- Product Content -->
+            <div class="product-content">
+                <!-- เสาเข็มไอ -->
+                <div class="product-category active" id="pile-i">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic6.jpg" alt="เสาเข็มไอ" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>เสาเข็มหน้าตัดตัว I</h3>
+                            <p>เสาเข็มคอนกรีตอัดแรงรูปตัว I เหมาะสำหรับงานก่อสร้างที่ต้องการรับน้ำหนักสูง</p>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ชนิด</th>
+                                        <th>พื้นที่หน้าตัด<br>(ตร.ซม.)</th>
+                                        <th>เส้นรอบรูป<br>(ซม.)</th>
+                                        <th>น้ำหนัก<br>(กก./ม.)</th>
+                                        <th>รับน้ำหนักปลอดภัย<br>(ตัน)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>I-23</td>
+                                        <td>460</td>
+                                        <td>92</td>
+                                        <td>115</td>
+                                        <td>35</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-26</td>
+                                        <td>520</td>
+                                        <td>104</td>
+                                        <td>130</td>
+                                        <td>40</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-30</td>
+                                        <td>600</td>
+                                        <td>120</td>
+                                        <td>150</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-35</td>
+                                        <td>700</td>
+                                        <td>140</td>
+                                        <td>175</td>
+                                        <td>55</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-40</td>
+                                        <td>800</td>
+                                        <td>160</td>
+                                        <td>200</td>
+                                        <td>65</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-45</td>
+                                        <td>900</td>
+                                        <td>180</td>
+                                        <td>225</td>
+                                        <td>75</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <button class="quote-btn" onclick="requestQuote('เสาเข็มไอ')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เสาเข็มสี่เหลี่ยมตัน -->
+                <div class="product-category" id="pile-square">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic7.jpg" alt="เสาเข็มสี่เหลี่ยมตัน" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>เสาเข็มหน้าตัดสี่เหลี่ยมตัน</h3>
+                            <p>เสาเข็มคอนกรีตอัดแรงรูปสี่เหลี่ยมตัน เหมาะสำหรับงานรองรับโครงสร้างหนัก</p>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ชนิด</th>
+                                        <th>พื้นที่หน้าตัด<br>(ตร.ซม.)</th>
+                                        <th>เส้นรอบรูป<br>(ซม.)</th>
+                                        <th>น้ำหนัก<br>(กก./ม.)</th>
+                                        <th>รับน้ำหนักปลอดภัย<br>(ตัน)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>25x25</td>
+                                        <td>625</td>
+                                        <td>100</td>
+                                        <td>156</td>
+                                        <td>50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30x30</td>
+                                        <td>900</td>
+                                        <td>120</td>
+                                        <td>225</td>
+                                        <td>70</td>
+                                    </tr>
+                                    <tr>
+                                        <td>35x35</td>
+                                        <td>1225</td>
+                                        <td>140</td>
+                                        <td>306</td>
+                                        <td>95</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40x40</td>
+                                        <td>1600</td>
+                                        <td>160</td>
+                                        <td>400</td>
+                                        <td>125</td>
+                                    </tr>
+                                    <tr>
+                                        <td>45x45</td>
+                                        <td>2025</td>
+                                        <td>180</td>
+                                        <td>506</td>
+                                        <td>155</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50x50</td>
+                                        <td>2500</td>
+                                        <td>200</td>
+                                        <td>625</td>
+                                        <td>190</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <button class="quote-btn" onclick="requestQuote('เสาเข็มสี่เหลี่ยมตัน')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เสารั้วบ้าน -->
+                <div class="product-category" id="fence-pile">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic8.jpg" alt="เสารั้วบ้าน" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>เสารั้วบ้าน</h3>
+                            <p>เสาคอนกรีตสำหรับงานรั้วบ้าน รั้วโรงงาน และงานรั้วทั่วไป แข็งแรงทนทาน</p>
+                            
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">ขนาด:</span>
+                                    <span class="spec-value">10x10, 12x12, 15x15 ซม.</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">ความยาว:</span>
+                                    <span class="spec-value">2.5, 3.0, 3.5, 4.0 เมตร</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">น้ำหนัก:</span>
+                                    <span class="spec-value">25-80 กก./ต้น</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">การเสริมเหล็ก:</span>
+                                    <span class="spec-value">เหล็กเส้นผ่าศูนย์กลาง 6-9 มม.</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">คุณสมบัติ:</span>
+                                    <span class="spec-value">ทนต่อสภาพอากาศ กันปลวก</span>
+                                </div>
+                            </div>
+                            
+                            <button class="quote-btn" onclick="requestQuote('เสารั้วบ้าน')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เสาเข็มไมโครไพล์ -->
+                <div class="product-category" id="micro-pile">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic9.jpeg" alt="เสาเข็มไมโครไพล์" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>เสาเข็มไมโครไพล์</h3>
+                            <p>เสาเข็มขนาดเล็กสำหรับงานเสริมฐานราก งานซ่อมแซม และพื้นที่จำกัด</p>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>รุ่น</th>
+                                        <th>เส้นผ่าศูนย์กลาง<br>(ซม.)</th>
+                                        <th>น้ำหนัก<br>(กก./ม.)</th>
+                                        <th>รับน้ำหนักปลอดภัย<br>(ตัน)</th>
+                                        <th>คุณสมบัติ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MP-18</td>
+                                        <td>18</td>
+                                        <td>63</td>
+                                        <td>15</td>
+                                        <td>เหมาะสำหรับบ้านเดี่ยว อาคารเตี้ย</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MP-22</td>
+                                        <td>22</td>
+                                        <td>94</td>
+                                        <td>25</td>
+                                        <td>เหมาะสำหรับอาคารพาณิชย์ 2-3 ชั้น</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MP-26</td>
+                                        <td>26</td>
+                                        <td>132</td>
+                                        <td>35</td>
+                                        <td>เหมาะสำหรับอาคารสูง งานเสริมฐานราก</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">ข้อดี:</span>
+                                    <span class="spec-value">ติดตั้งง่าย เครื่องจักรเล็ก เสียงรบกวนน้อย</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">การใช้งาน:</span>
+                                    <span class="spec-value">งานซ่อมแซม เสริมฐานราก พื้นที่แคบ</span>
+                                </div>
+                            </div>
+                            
+                            <button class="quote-btn" onclick="requestQuote('เสาเข็มไมโครไพล์')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- แผ่นพื้นสำเร็จรูป -->
+                <div class="product-category" id="precast-slab">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic10.jpg" alt="แผ่นพื้นสำเร็จรูป" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>แผ่นพื้นสำเร็จรูป</h3>
+                            <p>แผ่นพื้นคอนกรีตอัดแรง เสริมด้วยลวด PC Wire 4 MM คุณภาพสูง</p>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ขนาด<br>(ซม.)</th>
+                                        <th>ความหนา<br>(ซม.)</th>
+                                        <th>น้ำหนัก<br>(กก./แผ่น)</th>
+                                        <th>รับน้ำหนัก<br>(กก./ตร.ม.)</th>
+                                        <th>การเสริม</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>50x200</td>
+                                        <td>5</td>
+                                        <td>125</td>
+                                        <td>400</td>
+                                        <td>PC Wire 4 MM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>60x200</td>
+                                        <td>6</td>
+                                        <td>180</td>
+                                        <td>500</td>
+                                        <td>PC Wire 4 MM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>75x200</td>
+                                        <td>7.5</td>
+                                        <td>225</td>
+                                        <td>600</td>
+                                        <td>PC Wire 4 MM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100x200</td>
+                                        <td>10</td>
+                                        <td>500</td>
+                                        <td>800</td>
+                                        <td>PC Wire 4 MM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>120x200</td>
+                                        <td>12</td>
+                                        <td>720</td>
+                                        <td>1000</td>
+                                        <td>PC Wire 4 MM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">ข้อดี:</span>
+                                    <span class="spec-value">ติดตั้งรวดเร็ว ประหยัดเวลา คุณภาพสม่ำเสมอ</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">การใช้งาน:</span>
+                                    <span class="spec-value">พื้นอาคาร สะพาน ทางเดิน</span>
+                                </div>
+                            </div>
+                            
+                            <button class="quote-btn" onclick="requestQuote('แผ่นพื้นสำเร็จรูป')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ท่อคอนกรีตอัดแรง -->
+                <div class="product-category" id="concrete-pipe">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="pic11.webp" alt="ท่อคอนกรีตอัดแรง" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3>ท่อคอนกรีตอัดแรงเสริมเหล็ก</h3>
+                            <p>ท่อคอนกรีตคุณภาพสูง เสริมเหล็กแกนกลาง เหมาะสำหรับระบบระบายน้ำ</p>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ขนาดท่อ<br>วงนอก (ซม.)</th>
+                                        <th>ความหนา<br>(ซม.)</th>
+                                        <th>น้ำหนัก<br>(กก./ท่อน)</th>
+                                        <th>จำนวนบรรทุก<br>รถ 10 ล้อ</th>
+                                        <th>จำนวนบรรทุก<br>เทลเลอร์</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>40</td>
+                                        <td>4</td>
+                                        <td>85</td>
+                                        <td>35 ท่อน</td>
+                                        <td>50 ท่อน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50</td>
+                                        <td>5</td>
+                                        <td>125</td>
+                                        <td>25 ท่อน</td>
+                                        <td>35 ท่อน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>150</td>
+                                        <td>20 ท่อน</td>
+                                        <td>30 ท่อน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>80</td>
+                                        <td>6</td>
+                                        <td>250</td>
+                                        <td>12 ท่อน</td>
+                                        <td>18 ท่อน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100</td>
+                                        <td>7</td>
+                                        <td>380</td>
+                                        <td>8 ท่อน</td>
+                                        <td>12 ท่อน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>120</td>
+                                        <td>8</td>
+                                        <td>520</td>
+                                        <td>6 ท่อน</td>
+                                        <td>9 ท่อน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <button class="quote-btn" onclick="requestQuote('ท่อคอนกรีตอัดแรง')">
+                                <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- บ่อพัก -->
+                <div class="product-category" id="manhole">
+                    <div class="product-grid">
+                        <!-- บ่อพัก 1 ทาง -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="pic12.webp" alt="บ่อพัก 1 ทาง" style="width:100%; height:100%; object-fit:cover;">
+                            </div>
+                            <div class="product-info">
+                                <h3>บ่อพัก 1 ทาง</h3>
+                                <p>บ่อพักคอนกรีตสำหรับระบบระบายน้ำ ทางเข้าเดียว</p>
+                                
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ขนาด<br>(ซม.)</th>
+                                            <th>ใช้กับท่อ<br>(ซม.)</th>
+                                            <th>ความหนา<br>(ซม.)</th>
+                                            <th>น้ำหนัก<br>(กก.)</th>
+                                            <th>รถสองล้อ</th>
+                                            <th>เทลเลอร์</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>40x40</td>
+                                            <td>30</td>
+                                            <td>4</td>
+                                            <td>45</td>
+                                            <td>15 ชิ้น</td>
+                                            <td>25 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>50x50</td>
+                                            <td>40</td>
+                                            <td>5</td>
+                                            <td>75</td>
+                                            <td>10 ชิ้น</td>
+                                            <td>18 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>60x60</td>
+                                            <td>50</td>
+                                            <td>5</td>
+                                            <td>95</td>
+                                            <td>8 ชิ้น</td>
+                                            <td>15 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>80x80</td>
+                                            <td>60-80</td>
+                                            <td>6</td>
+                                            <td>180</td>
+                                            <td>4 ชิ้น</td>
+                                            <td>8 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>100x100</td>
+                                            <td>80-100</td>
+                                            <td>7</td>
+                                            <td>280</td>
+                                            <td>3 ชิ้น</td>
+                                            <td>6 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>120x120</td>
+                                            <td>100-120</td>
+                                            <td>8</td>
+                                            <td>420</td>
+                                            <td>2 ชิ้น</td>
+                                            <td>4 ชิ้น</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <button class="quote-btn" onclick="requestQuote('บ่อพัก 1 ทาง')">
+                                    <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- บ่อพัก 2 ทาง 3 ทางตรง -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <i class="fas fa-project-diagram" style="font-size: 4rem; color: #ffd700;"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3>บ่อพัก 2 ทาง และ 3 ทางตรง</h3>
+                                <p>บ่อพักคอนกรีตสำหรับระบบระบายน้ำ ทางเข้าหลายทิศทาง</p>
+                                
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ขนาด<br>(ซม.)</th>
+                                            <th>ใช้กับท่อ<br>(ซม.)</th>
+                                            <th>ความหนา<br>(ซม.)</th>
+                                            <th>น้ำหนัก<br>(กก.)</th>
+                                            <th>รถสองล้อ</th>
+                                            <th>เทลเลอร์</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>40x40</td>
+                                            <td>30</td>
+                                            <td>4</td>
+                                            <td>50</td>
+                                            <td>12 ชิ้น</td>
+                                            <td>20 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>50x50</td>
+                                            <td>40</td>
+                                            <td>5</td>
+                                            <td>85</td>
+                                            <td>8 ชิ้น</td>
+                                            <td>15 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>60x60</td>
+                                            <td>50</td>
+                                            <td>5</td>
+                                            <td>110</td>
+                                            <td>6 ชิ้น</td>
+                                            <td>12 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>80x80</td>
+                                            <td>60-80</td>
+                                            <td>6</td>
+                                            <td>200</td>
+                                            <td>3 ชิ้น</td>
+                                            <td>6 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>100x100</td>
+                                            <td>80-100</td>
+                                            <td>7</td>
+                                            <td>320</td>
+                                            <td>2 ชิ้น</td>
+                                            <td>4 ชิ้น</td>
+                                        </tr>
+                                        <tr>
+                                            <td>120x120</td>
+                                            <td>100-120</td>
+                                            <td>8</td>
+                                            <td>480</td>
+                                            <td>1 ชิ้น</td>
+                                            <td>3 ชิ้น</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div class="product-specs">
+                                    <div class="spec-item">
+                                        <span class="spec-label">การเสริมเหล็ก:</span>
+                                        <span class="spec-value">เหล็กตะแกรงทุกชิ้น</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span class="spec-label">ข้อดี:</span>
+                                        <span class="spec-value">ทนทาน กันน้ำรั่ว ติดตั้งง่าย</span>
+                                    </div>
+                                </div>
+                                
+                                <button class="quote-btn" onclick="requestQuote('บ่อพัก 2-3 ทาง')">
+                                    <i class="fas fa-calculator"></i> ขอใบเสนอราคา
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Features Section -->
+    <section class="section product-features animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">จุดเด่นผลิตภัณฑ์</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>มาตรฐานสูง</h4>
+                    <p>ผลิตตามมาตรฐานโรงงานคอนกรีต ผ่านการตรวจสอบคุณภาพเข้มงวด พร้อมใบรับรองคุณภาพ</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h4>แข็งแรงทนทาน</h4>
+                    <p>ใช้วัสดุคุณภาพสูง เสริมเหล็กตามมาตรฐาน ทนต่อแรงกดแรงดึง และสภาพอากาศ</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>ส่งมอบรวดเร็ว</h4>
+                    <p>ระบบการผลิตและจัดส่งที่มีประสิทธิภาพ รับประกันการส่งมอบตรงเวลาทุกครั้ง</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>ปรับแต่งได้</h4>
+                    <p>รับผลิตตามขนาดและความต้องการเฉพาะ พร้อมให้คำปรึกษาด้านเทคนิคจากผู้เชี่ยวชาญ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 บริษัท จตุพรพิเศษ กรุ๊ป จำกัด สงวนลิขสิทธิ์ | ออกแบบและพัฒนาด้วยความใส่ใจ</p>
+        </div>
+    </footer>
+
+<script>
+    // ================================
+    // Mobile Menu Toggle
+    // ================================
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const body = document.body;
+
+    mobileMenuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        body.classList.toggle('menu-open');
+        const icon = this.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.classList.replace('fa-bars', 'fa-times');
+            this.setAttribute('aria-expanded', 'true');
+        } else {
+            icon.classList.replace('fa-times', 'fa-bars');
+            this.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+            mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.querySelectorAll('.nav-item a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+            mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // ================================
+    // Header scroll effect
+    // ================================
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        lastScrollY = currentScrollY;
+    });
+
+    // ================================
+    // Smooth Scrolling
+    // ================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ================================
+    // Intersection Observer for animations
+    // ================================
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // ================================
+    // Particle animation
+    // ================================
+    function createParticle() {
+        if (window.innerWidth > 768) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(particle);
+            setTimeout(() => { particle.remove(); }, 6000);
+        }
+    }
+    setInterval(createParticle, 4000);
+
+    // ================================
+    // Category Tabs
+    // ================================
+    function showCategory(categoryId) {
+        document.querySelectorAll('.product-category').forEach(cat => cat.classList.remove('active'));
+        document.getElementById(categoryId).classList.add('active');
+        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.category-btn[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+    }
+
+    // ================================
+    // Request Quote
+    // ================================
+    function requestQuote(productName) {
+        alert(`คุณเลือกขอใบเสนอราคาสำหรับ: ${productName}`);
+        // สามารถปรับเป็นฟังก์ชันส่งฟอร์ม หรือเปิด modal ได้
+    }
+
+    // ================================
+    // Contact Form Submission
+    // ================================
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('.submit-btn');
+            const buttonSpan = button.querySelector('span');
+            const originalText = buttonSpan.textContent;
+            button.disabled = true;
+            buttonSpan.textContent = 'กำลังส่ง...';
+            button.style.background = 'linear-gradient(45deg, #6c757d, #495057)';
+            setTimeout(() => {
+                buttonSpan.textContent = 'ส่งสำเร็จ! ✓';
+                button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                setTimeout(() => {
+                    buttonSpan.textContent = originalText;
+                    button.style.background = 'linear-gradient(45deg, #1e3c72, #2a5298)';
+                    button.disabled = false;
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+    }
+
+    // ================================
+    // FAQ Toggle
+    // ================================
+    function toggleFAQ(button) {
+        const faqItem = button.parentElement;
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = button.querySelector('i');
+        button.classList.toggle('active');
+        answer.classList.toggle('active');
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.querySelector('.faq-question').classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('active');
+            }
+        });
+    }
+
+    // ================================
+    // Keyboard Navigation
+    // ================================
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+            mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.focus();
+        }
+    });
+
+    // ================================
+    // Responsive adjustments on resize
+    // ================================
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth > 1023) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.particle').forEach(particle => particle.remove());
+            }
+        }, 250);
+    });
+
+    // ================================
+    // Page Load Animations
+    // ================================
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+        const pageHeaderContent = document.querySelector('.page-header-content');
+        if (pageHeaderContent) pageHeaderContent.style.animation = 'fadeInUp 1s ease forwards';
+    });
+
+    // Initialize ARIA attributes
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('js-loaded');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-controls', 'nav-menu');
+        navMenu.setAttribute('aria-labelledby', 'mobile-menu-toggle');
+    });
+</script>
+
+</body>
+</html>
